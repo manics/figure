@@ -1,0 +1,8 @@
+# Run bin/omero load <this file>
+
+config append omero.web.apps '"figure"'
+config append omero.web.ui.top_links '["Figure", "figure_index", {"title": "Open Figure in new tab", "target": "figure"}]'
+
+# Run this line manually:
+#script upload omero/figure_scripts/Figure_To_Pdf.py --official
+
