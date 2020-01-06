@@ -111,8 +111,12 @@ def require_npm(command, strict=False):
     """
     class WrappedCommand(command):
         def run(self):
-            if strict or not os.path.isdir(
-                    'omero_figure/static/figure/js'):
+            targets = (
+                'omero_figure/static/figure/figure.js',
+                'omero_figure/static/figure/templates.js',
+                'omero_figure/static/figure/3rdparty/shape-editor-4.0.0',
+            )
+            if strict or not all(os.path.exists(p) for p in targets):
                 self.spawn(['npm', 'install'])
                 self.spawn(['npm', 'install', '-g', 'grunt'])
                 self.spawn(['grunt', 'jst'])
